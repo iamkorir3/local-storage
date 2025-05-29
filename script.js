@@ -4,7 +4,7 @@ const nameInput = studentForm["name"];
 const ageInput = studentForm["age"];
 const rollInput = studentForm["roll"];
 
-const students = [];
+const students = JSON.parse(localStorage.getItem("students")) || [];
 
 const addStudent = (name, age, roll) => {
   students.push({
@@ -28,7 +28,11 @@ const createStudentElement = ({ name, age, roll }) => {
 
   studentDiv.append(studentName, studentAge, studentRoll);
   studentContainer.appendChild(studentDiv);
+
+  studentContainer.style.display = students.length === 0 ? "none" : "flex";
 };
+
+studentContainer.style.display = students.length === 0 ? "none" : "flex";
 
 students.forEach(createStudentElement);
 
